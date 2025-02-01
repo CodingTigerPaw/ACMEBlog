@@ -7,7 +7,7 @@ const SelectCategory = ({
   setSelected: React.Dispatch<React.SetStateAction<CategoryFilter>>;
 }) => {
   return (
-    <div className="flex justify-center bg-white">
+    <div className="flex flex-grow justify-center bg-white">
       <button
         className={`${
           selected === "all" && "underline text-[#8E2F3F] "

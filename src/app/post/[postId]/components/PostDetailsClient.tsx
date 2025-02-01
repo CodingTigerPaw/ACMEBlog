@@ -3,19 +3,23 @@ import { SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import fetchPost from "@/app/utils/fetch";
 import Header from "@/components/header";
-import { BaseURL } from "@/consts";
+import { BaseURL, icons, favoriteStorageKey } from "@/consts";
 import { PostType } from "@/types";
 import Link from "next/link";
-import { setBlogStorage, getBlogStorage } from "@/app/utils/localStorage";
-import { icons, postImg } from "@/consts";
-import ItemLayout from "@/components/itemLayout";
-import FavoriteIcon from "./FavoriteIcon";
-import { favoriteStorageKey } from "@/consts";
+import {
+  setBlogStorage,
+  getBlogStorage,
+  updateBlogStorage,
+} from "@/app/utils/localStorage";
+import PostContent from "./PostContent";
+import AddToFavoritesIcon from "./AddToFavoritesIcon";
 const PostDetailsClient = ({ id }: { id: string }) => {
   const [details, setDetails] = useState<PostType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [favorite, setFavorite] =
     useState<SetStateAction<boolean | undefined>>();
+
+  const convertToString = (value: number | string) => value.toString();
 
   const storedData = getBlogStorage(favoriteStorageKey) || [];
 
@@ -26,15 +30,15 @@ const PostDetailsClient = ({ id }: { id: string }) => {
 
   const removeFromFavorites = (id: string, data: PostType[]) => () => {
     const updatedFavorites = data.filter(
-      (item: PostType) => item.id.toString() !== id.toString()
+      (item: PostType) => convertToString(item.id) !== convertToString(id)
     );
-    localStorage.setItem(favoriteStorageKey, JSON.stringify(updatedFavorites));
+    updateBlogStorage(favoriteStorageKey, updatedFavorites);
     setFavorite(false);
   };
 
   const findFavorite = (data: PostType[]) => () => {
     const isFavorite = data.some(
-      (el: PostType) => el.id?.toString() === id.toString()
+      (el: PostType) => convertToString(el.id) === convertToString(id)
     );
     setFavorite(isFavorite);
   };
@@ -60,7 +64,7 @@ const PostDetailsClient = ({ id }: { id: string }) => {
     <>
       <Header />
       {loading ? (
-        "Post is loading"
+        <div className="w-10 ml-auto mr-auto">Post is Loading</div>
       ) : (
         <>
           <div className="flex flex-col ml-8 md:flex-row">
@@ -76,31 +80,14 @@ const PostDetailsClient = ({ id }: { id: string }) => {
                 </span>
               </div>
             </Link>
-            <div className=" md:ml-auto ml-[80px]  md:mr-[300px] lg:mr-[600px] ">
-              {favorite ? (
-                <FavoriteIcon
-                  icon={icons.starFull}
-                  text="usuń z ulubionych"
-                  handler={idToRemove}
-                />
-              ) : (
-                <FavoriteIcon
-                  icon={icons.starStroke}
-                  text="dodaj z ulubionych"
-                  handler={AddtoFavorites}
-                />
-              )}
-            </div>
+            <AddToFavoritesIcon
+              addToFavorites={AddtoFavorites}
+              idToRemove={idToRemove}
+              favorite={favorite}
+            />
           </div>
-          <div className="ml-[100px]  md:mr-[300px] lg:mr-[600px]">
-            <h1 className="text-xl font-bold py-6">{details?.title}</h1>
-            <p className="pb-16">{details?.description}</p>
-            <p className="text-xl font-bold py-6">{details?.header}</p>
-            <p>{details?.content}</p>
-            <ItemLayout>
-              <Image src={postImg.postImage} alt="img"></Image>
-            </ItemLayout>
-          </div>
+
+          <PostContent details={details} />
         </>
       )}
     </>

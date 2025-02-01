@@ -22,7 +22,8 @@ const Category = ({
 
   return (
     <div
-      className={`${customStyles},${
+      id="b"
+      className={`${customStyles} ${
         categoryName === categoryC && "border-black border-4"
       }, cursor-pointer`}
       onClick={() => {

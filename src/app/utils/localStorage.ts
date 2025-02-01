@@ -12,3 +12,6 @@ export const getBlogStorage = (key: string) => {
   const data = localStorage.getItem(key);
   return data ? JSON.parse(data) : [];
 };
+
+export const updateBlogStorage = (key: string, dataToUpdate: PostType[]) =>
+  localStorage.setItem(key, JSON.stringify(dataToUpdate));

@@ -6,14 +6,12 @@ const CategoryNavigation = () => {
   const context = useContext(CategoryContext);
 
   if (!context) {
-    throw new Error(
-      "CategoryNavigation must be used within a CategoryProvider"
-    );
+    throw new Error("Context Error");
   }
 
   const { categoryC, setCategoryC } = context;
   return (
-    <div className="flex">
+    <div className="flex px-6">
       <span className="font-poppins underline font-bold text-[#8E2F3F]">
         {categoryC}
       </span>

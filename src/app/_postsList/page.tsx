@@ -44,29 +44,26 @@ const PostList = () => {
     );
   }, []);
   const context = useContext(CategoryContext);
-
   if (!context) {
-    throw new Error(
-      "CategoryNavigation must be used within a CategoryProvider"
-    );
+    throw new Error("Error Context");
   }
 
   const { categoryC } = context;
 
-  //const { categoryC } = useContext(CategoryContext);
   const [selected, setSelected] = useState(CategoryFilter.all);
   const posts = filterAndMap(post, categoryC as string);
 
   return (
     <div>
-      <h2 className="py-8 pl-[60px] uppercase font-openSans font-bold">
-        Wpisy
-      </h2>
+      <div className="flex py-8 pl-[60px] pt-8">
+        <h2 className=" pl-[60px] uppercase font-openSans font-bold">Wpisy</h2>
 
-      <div className={`${categoryC === undefined ? "invisible" : "visible"}`}>
-        <CategoryNavigation />
+        <div className={`${categoryC === undefined ? "invisible" : "visible"}`}>
+          <CategoryNavigation />
+        </div>
+        <SelectCategory selected={selected} setSelected={setSelected} />
       </div>
-      <SelectCategory selected={selected} setSelected={setSelected} />
+
       <div className="flex gap-x-6 flex-wrap justify-start bg-white">
         {selected === CategoryFilter.all
           ? loading
