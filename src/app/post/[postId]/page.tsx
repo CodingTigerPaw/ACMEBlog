@@ -1,7 +1,10 @@
 import PostDetailsClient from "./components/PostDetailsClient";
 
-const PostDetails = async ({ params }: { params: { postId: string } }) => {
-  const { postId } = await params;
+type pageProps = {
+  params: { postId: string };
+};
+const PostDetails = async (props: pageProps) => {
+  const { postId } = await props.params;
   return <PostDetailsClient id={postId} />;
 };
 
