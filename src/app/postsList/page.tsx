@@ -37,7 +37,7 @@ const PostList = ({ data }: PostListType) => {
         <CategoryNavigation />
       </div>
       <SelectCategory selected={selected} setSelected={setSelected} />
-      <div className="flex gap-x-6 flex-wrap justify-center bg-white">
+      <div className="flex gap-x-6 flex-wrap justify-start bg-white">
         {selected === CategoryFilter.all ? posts : getFavorites(categoryC)}
       </div>
     </div>

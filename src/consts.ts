@@ -15,8 +15,9 @@ import leftSlider from "./images/leftSlider.png";
 
 import icon1 from "./images/categoriesIcons/Ikona wiedzy o koronawirusie.png";
 import icon2 from "./images/categoriesIcons/Proassist Blog Edukacyjny Frame.png";
-import icon3 from "./images/categoriesIcons/Proassist Frame (1).png";
-import icon4 from "./images/categoriesIcons/Proassist Frame.png";
+import icon3 from "./images/categoriesIcons/Proassist Frame.png";
+import icon4 from "./images/categoriesIcons/Proassist Frame (1).png";
+
 import { Category } from "./types";
 
 export const BaseURL =

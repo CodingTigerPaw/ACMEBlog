@@ -20,11 +20,13 @@ const Category = ({
     );
   }
 
-  const { setCategoryC } = context;
+  const { categoryC, setCategoryC } = context;
 
   return (
     <div
-      className={`${customStyles}, cursor-pointer`}
+      className={`${customStyles},${
+        categoryName === categoryC && "border-black border-4"
+      }, cursor-pointer`}
       onClick={() => {
         setCategoryC(categoryName);
       }}

@@ -13,6 +13,7 @@ import FavoriteIcon from "./FavoriteIcon";
 import { favoriteStorageKey } from "@/consts";
 const PostDetailsClient = ({ id }: { id: string }) => {
   const [details, setDetails] = useState<postType | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [favorite, setFavorite] =
     useState<SetStateAction<boolean | undefined>>();
 
@@ -44,7 +45,10 @@ const PostDetailsClient = ({ id }: { id: string }) => {
   useEffect(() => {
     const fetchDetails = fetchPost(`${BaseURL}/${id}`);
     fetchDetails(
-      (data) => setDetails(data),
+      (data) => {
+        setDetails(data);
+        setLoading(false);
+      },
       (err) => {
         console.log(err);
         throw new Error("Error During fetching Post");
@@ -55,45 +59,50 @@ const PostDetailsClient = ({ id }: { id: string }) => {
   return (
     <>
       <Header />
-
-      <div className="flex flex-col ml-8 md:flex-row">
-        <Link href={"/"}>
-          <div className="flex">
-            <Image
-              className="w-4 h-3 m-2"
-              src={icons.arrowLeft}
-              alt="icons Left"
-            ></Image>
-            <span className="text-[32px] font-openSans font-bold">
-              Blog Edukacyjny
-            </span>
+      {loading ? (
+        "Post is loading"
+      ) : (
+        <>
+          <div className="flex flex-col ml-8 md:flex-row">
+            <Link href={"/"}>
+              <div className="flex">
+                <Image
+                  className="w-4 h-3 m-2"
+                  src={icons.arrowLeft}
+                  alt="icons Left"
+                ></Image>
+                <span className="text-[32px] font-openSans font-bold">
+                  Blog Edukacyjny
+                </span>
+              </div>
+            </Link>
+            <div className=" md:ml-auto mr-[600px] ">
+              {favorite ? (
+                <FavoriteIcon
+                  icon={icons.starFull}
+                  text="usuń z ulubionych"
+                  handler={idToRemove}
+                />
+              ) : (
+                <FavoriteIcon
+                  icon={icons.starStroke}
+                  text="dodaj z ulubionych"
+                  handler={AddtoFavorites}
+                />
+              )}
+            </div>
           </div>
-        </Link>
-        <div className=" md:ml-auto ">
-          {favorite ? (
-            <FavoriteIcon
-              icon={icons.starFull}
-              text="usuń z ulubionych"
-              handler={idToRemove}
-            />
-          ) : (
-            <FavoriteIcon
-              icon={icons.starStroke}
-              text="dodaj z ulubionych"
-              handler={AddtoFavorites}
-            />
-          )}
-        </div>
-      </div>
-      <div className="px-16">
-        <h1 className="text-xl font-bold py-6">{details?.title}</h1>
-        <p className="pb-16">{details?.description}</p>
-        <p className="text-xl font-bold py-6">{details?.header}</p>
-        <p>{details?.content}</p>
-        <ItemLayout>
-          <Image src={postImg.postImage} alt="img"></Image>
-        </ItemLayout>
-      </div>
+          <div className="ml-[100px] mr-[600px]">
+            <h1 className="text-xl font-bold py-6">{details?.title}</h1>
+            <p className="pb-16">{details?.description}</p>
+            <p className="text-xl font-bold py-6">{details?.header}</p>
+            <p>{details?.content}</p>
+            <ItemLayout>
+              <Image src={postImg.postImage} alt="img"></Image>
+            </ItemLayout>
+          </div>
+        </>
+      )}
     </>
   );
 };

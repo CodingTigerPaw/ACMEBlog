@@ -19,12 +19,12 @@ const RenderCategories = () => {
   );
 };
 const Categories = () => (
-  <div className="bg-[#F4F4F4]">
+  <div className="bg-[#F4F4F4] pb-8 ">
     <div className="px-12 pt-4 font-openSans font-bold uppercase">
       Kategorie
     </div>
 
-    <div className="hidden md:flex gap-4 justify-center py-8">
+    <div className="hidden md:flex gap-4 justify-start py-8 mb-4">
       {RenderCategories()}
     </div>
     <div className="md:hidden">
