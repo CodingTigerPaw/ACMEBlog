@@ -1,10 +1,10 @@
 import { categoryColor } from "@/app/utils/categoryColor";
-import { postType } from "@/types";
+import { PostType } from "@/types";
 import { useRouter } from "next/navigation";
 import { icons } from "@/consts";
 import Image from "next/image";
 
-const PostElement = ({ el }: { el: postType }) => {
+const PostElement = ({ el }: { el: PostType }) => {
   const router = useRouter();
 
   return (

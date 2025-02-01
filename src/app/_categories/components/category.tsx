@@ -15,9 +15,7 @@ const Category = ({
   const context = useContext(CategoryContext);
 
   if (!context) {
-    throw new Error(
-      "CategoryNavigation must be used within a CategoryProvider"
-    );
+    throw new Error("Context Error");
   }
 
   const { categoryC, setCategoryC } = context;

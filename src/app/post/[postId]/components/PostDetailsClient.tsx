@@ -4,7 +4,7 @@ import Image from "next/image";
 import fetchPost from "@/app/utils/fetch";
 import Header from "@/components/header";
 import { BaseURL } from "@/consts";
-import { postType } from "@/types";
+import { PostType } from "@/types";
 import Link from "next/link";
 import { setBlogStorage, getBlogStorage } from "@/app/utils/localStorage";
 import { icons, postImg } from "@/consts";
@@ -12,7 +12,7 @@ import ItemLayout from "@/components/itemLayout";
 import FavoriteIcon from "./FavoriteIcon";
 import { favoriteStorageKey } from "@/consts";
 const PostDetailsClient = ({ id }: { id: string }) => {
-  const [details, setDetails] = useState<postType | null>(null);
+  const [details, setDetails] = useState<PostType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [favorite, setFavorite] =
     useState<SetStateAction<boolean | undefined>>();
@@ -24,17 +24,17 @@ const PostDetailsClient = ({ id }: { id: string }) => {
     setFavorite(true);
   };
 
-  const removeFromFavorites = (id: string, data: postType[]) => () => {
+  const removeFromFavorites = (id: string, data: PostType[]) => () => {
     const updatedFavorites = data.filter(
-      (item: postType) => item.id.toString() !== id.toString()
+      (item: PostType) => item.id.toString() !== id.toString()
     );
     localStorage.setItem(favoriteStorageKey, JSON.stringify(updatedFavorites));
     setFavorite(false);
   };
 
-  const findFavorite = (data: postType[]) => () => {
+  const findFavorite = (data: PostType[]) => () => {
     const isFavorite = data.some(
-      (el: postType) => el.id?.toString() === id.toString()
+      (el: PostType) => el.id?.toString() === id.toString()
     );
     setFavorite(isFavorite);
   };
@@ -46,7 +46,7 @@ const PostDetailsClient = ({ id }: { id: string }) => {
     const fetchDetails = fetchPost(`${BaseURL}/${id}`);
     fetchDetails(
       (data) => {
-        setDetails(data);
+        setDetails(data as SetStateAction<PostType | null>);
         setLoading(false);
       },
       (err) => {

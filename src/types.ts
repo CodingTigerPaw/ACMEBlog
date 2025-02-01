@@ -8,7 +8,7 @@ export type CategoryProps = {
   color: string;
   customStyles?: string;
 };
-export type postType = {
+export type PostType = {
   id: string;
   title: string;
   date: string;
@@ -33,5 +33,5 @@ export enum CategoryFilter {
 }
 
 export type PostListType = {
-  data: postType[];
+  data: PostType[];
 };

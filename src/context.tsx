@@ -6,6 +6,4 @@ interface MyContextType {
   setCategoryC: React.Dispatch<React.SetStateAction<Category | undefined>>;
 }
 
-export const CategoryContext = createContext<MyContextType | undefined>(
-  undefined
-);
+export const CategoryContext = createContext<MyContextType | null>(null);

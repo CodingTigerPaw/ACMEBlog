@@ -1,7 +1,7 @@
-import { postType } from "@/types";
+import { PostType } from "@/types";
 
 export const setBlogStorage = (
-  posts: postType[] | postType | null,
+  posts: PostType[] | PostType | null,
   key: string
 ) => {
   const prevFav = getBlogStorage("favorites");

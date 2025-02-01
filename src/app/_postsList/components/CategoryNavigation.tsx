@@ -3,7 +3,15 @@ import { CategoryContext } from "@/context";
 import Image from "next/image";
 import { icons } from "@/consts";
 const CategoryNavigation = () => {
-  const { categoryC, setCategoryC } = useContext(CategoryContext);
+  const context = useContext(CategoryContext);
+
+  if (!context) {
+    throw new Error(
+      "CategoryNavigation must be used within a CategoryProvider"
+    );
+  }
+
+  const { categoryC, setCategoryC } = context;
   return (
     <div className="flex">
       <span className="font-poppins underline font-bold text-[#8E2F3F]">
