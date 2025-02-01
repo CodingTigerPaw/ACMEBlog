@@ -76,7 +76,7 @@ const PostDetailsClient = ({ id }: { id: string }) => {
                 </span>
               </div>
             </Link>
-            <div className=" md:ml-auto mr-[600px] ">
+            <div className=" md:ml-auto ml-[80px]  md:mr-[300px] lg:mr-[600px] ">
               {favorite ? (
                 <FavoriteIcon
                   icon={icons.starFull}
@@ -92,7 +92,7 @@ const PostDetailsClient = ({ id }: { id: string }) => {
               )}
             </div>
           </div>
-          <div className="ml-[100px] mr-[600px]">
+          <div className="ml-[100px]  md:mr-[300px] lg:mr-[600px]">
             <h1 className="text-xl font-bold py-6">{details?.title}</h1>
             <p className="pb-16">{details?.description}</p>
             <p className="text-xl font-bold py-6">{details?.header}</p>
