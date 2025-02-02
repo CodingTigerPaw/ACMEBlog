@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { CategoryProps } from "@/types";
+import { Category as CategoryType, CategoryProps } from "@/types";
 import { useContext } from "react";
 import { CategoryContext } from "@/context";
 
@@ -19,6 +19,9 @@ const Category = ({
   }
 
   const { categoryC, setCategoryC } = context;
+  const setCategoryName = (categoryName: CategoryType) => () => {
+    setCategoryC(categoryName);
+  };
 
   return (
     <div
@@ -26,9 +29,7 @@ const Category = ({
       className={`${customStyles} ${
         categoryName === categoryC && "border-black border-4"
       }, cursor-pointer`}
-      onClick={() => {
-        setCategoryC(categoryName);
-      }}
+      onClick={setCategoryName(categoryName)}
     >
       <Image src={image} alt="image"></Image>
       <h1

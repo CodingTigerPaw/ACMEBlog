@@ -42,7 +42,6 @@ const PostDetailsClient = ({ id }: { id: string }) => {
     );
     setFavorite(isFavorite);
   };
-
   const findFav = findFavorite(storedData);
   const idToRemove = removeFromFavorites(id, storedData);
 
@@ -63,6 +62,7 @@ const PostDetailsClient = ({ id }: { id: string }) => {
   return (
     <>
       <Header />
+
       {loading ? (
         <div className="w-10 ml-auto mr-auto">Post is Loading</div>
       ) : (

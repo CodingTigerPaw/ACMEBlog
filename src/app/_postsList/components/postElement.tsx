@@ -7,6 +7,10 @@ import Image from "next/image";
 const PostElement = ({ el }: { el: PostType }) => {
   const router = useRouter();
 
+  const moveToPost = (path: string) => () => {
+    router.push(path);
+  };
+
   return (
     <div
       id="el"
@@ -27,7 +31,7 @@ const PostElement = ({ el }: { el: PostType }) => {
       <div className="flex items-center gap-2">
         <p
           className="cursor-pointer font-bold my-6"
-          onClick={() => router.push(`/post/${el.id}`)}
+          onClick={moveToPost(`/post/${el.id}`)}
         >
           Zobacz wiecej
         </p>

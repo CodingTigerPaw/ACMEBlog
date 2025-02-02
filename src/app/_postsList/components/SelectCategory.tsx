@@ -1,4 +1,5 @@
 import { CategoryFilter } from "@/types";
+import { SetStateAction } from "react";
 const SelectCategory = ({
   selected,
   setSelected,
@@ -6,13 +7,16 @@ const SelectCategory = ({
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<CategoryFilter>>;
 }) => {
+  const setCategory = (value: SetStateAction<CategoryFilter>) => () => {
+    setSelected(value);
+  };
   return (
     <div className="flex flex-grow justify-center bg-white">
       <button
         className={`${
           selected === "all" && "underline text-[#8E2F3F] "
         } font-bold uppercase text-[14px] mr-6`}
-        onClick={() => setSelected(CategoryFilter.all)}
+        onClick={setCategory(CategoryFilter.all)}
       >
         wszystkie
       </button>
@@ -21,7 +25,7 @@ const SelectCategory = ({
         className={`${
           selected === "favorites" && "underline text-[#8E2F3F]"
         }  font-bold uppercase text-[14px] ml-6`}
-        onClick={() => setSelected(CategoryFilter.favorites)}
+        onClick={setCategory(CategoryFilter.favorites)}
       >
         Ulubione
       </button>
@@ -29,5 +33,4 @@ const SelectCategory = ({
   );
 };
 
-//! wydzielić buttony
 export default SelectCategory;
