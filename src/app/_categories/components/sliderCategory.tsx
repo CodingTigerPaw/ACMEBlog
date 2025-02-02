@@ -3,6 +3,7 @@ import { useState } from "react";
 import { sliderIcons } from "@/consts";
 import Image from "next/image";
 import { SlidesType } from "@/types";
+import SlidesDisplay from "./SlidesDisplay";
 const SliderCategory = ({ slides }: SlidesType) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,19 +19,10 @@ const SliderCategory = ({ slides }: SlidesType) => {
 
   return (
     <div className="relative w-full max-w-md mx-auto">
-      <div className="flex justify-center space-x-2 mb-2">
-        {slides.map((_: unknown, index: number) => (
-          <span
-            key={index}
-            className={`h-2 w-2 rounded-full ${
-              index === currentIndex ? "bg-black" : "bg-gray-300"
-            }`}
-          />
-        ))}
-      </div>
-      <div className="overflow-hidden w-full flex items-center justify-center p-4">
+      <SlidesDisplay slides={slides} currentIndex={currentIndex} />
+      {/* <div className="overflow-hidden w-full flex items-center justify-center p-4">
         {slides[currentIndex]}
-      </div>
+      </div> */}
       <div className="flex justify-between mt-4">
         <button className="absolute left-2 top-1/2 transform -translate-y-1/2">
           <Image
