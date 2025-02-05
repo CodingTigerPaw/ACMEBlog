@@ -19,10 +19,6 @@ const filterAndMap = (arr: PostType[], fliteredValue: string) => {
     .map((el: PostType) => <PostElement key={el.id} el={el} />);
 };
 
-const testF = () => {
-  console.log("on clic test");
-};
-
 const getFavorites = (categoryC: string) =>
   filterAndMap(getBlogStorage(favoriteStorageKey), categoryC);
 
