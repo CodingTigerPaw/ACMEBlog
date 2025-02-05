@@ -6,6 +6,10 @@ type AddToFavoritesIconProps = {
   addToFavorites: () => void;
   idToRemove: () => void;
 };
+
+const testF = () => {
+  console.log("on clic test");
+};
 const AddToFavoritesIcon = ({
   favorite,
   addToFavorites,

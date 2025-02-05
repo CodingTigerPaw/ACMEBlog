@@ -4,7 +4,7 @@ import { CategoryFilter, PostType } from "@/types";
 import fetchPost from "../utils/fetch";
 import { useContext, useState } from "react";
 import { CategoryContext } from "@/context";
-import { getBlogStorage, setBlogStorage } from "../utils/localStorage";
+import { getBlogStorage } from "../utils/localStorage";
 import PostElement from "./components/postElement";
 import CategoryNavigation from "./components/CategoryNavigation";
 import SelectCategory from "./components/SelectCategory";
@@ -19,10 +19,12 @@ const filterAndMap = (arr: PostType[], fliteredValue: string) => {
     .map((el: PostType) => <PostElement key={el.id} el={el} />);
 };
 
-const getFavorites = (categoryC: string) => {
-  const fav = getBlogStorage(favoriteStorageKey);
-  return filterAndMap(fav, categoryC);
+const testF = () => {
+  console.log("on clic test");
 };
+
+const getFavorites = (categoryC: string) =>
+  filterAndMap(getBlogStorage(favoriteStorageKey), categoryC);
 
 const PostList = () => {
   const [post, setPost] = useState<PostType[] | []>([]);
@@ -32,7 +34,6 @@ const PostList = () => {
     postsReq(
       (res) => {
         setPost(res as PostType[]);
-        setBlogStorage(res, "posts");
         setLoading(false);
         console.log(res);
       },
