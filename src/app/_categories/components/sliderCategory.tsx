@@ -21,14 +21,14 @@ const SliderCategory = ({ slides }: SlidesType) => {
     <div className="relative w-full max-w-md mx-auto">
       <SlidesDisplay slides={slides} currentIndex={currentIndex} />
       <div className="flex justify-between mt-4">
-        <button className="absolute left-2 top-1/2 transform -translate-y-1/2">
+        <button className="absolute top-1/2 transform -translate-y-1/2">
           <Image
             src={sliderIcons.leftSlider}
             alt="leftArrow"
             onClick={prevSlide}
           ></Image>
         </button>
-        <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
+        <button className="absolute right-[0.5px] top-1/2 transform -translate-y-1/2">
           <Image
             src={sliderIcons.rightSlider}
             alt="rightArrow"
