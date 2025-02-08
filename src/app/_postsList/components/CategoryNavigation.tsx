@@ -15,7 +15,7 @@ const CategoryNavigation = () => {
 
   const { categoryC, setCategoryC } = context;
   return (
-    <div className="flex px-6">
+    <div className="flex md:px-6 my-4">
       <span className="font-poppins underline font-bold text-[#8E2F3F]">
         {categoryC}
       </span>

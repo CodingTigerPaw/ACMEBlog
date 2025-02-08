@@ -52,13 +52,14 @@ const PostList = () => {
 
   return (
     <div>
-      <div className="flex py-8 pl-[60px] pt-8">
-        <h2 className=" pl-[60px] uppercase font-openSans font-bold">Wpisy</h2>
-
-        <div className={`${categoryC === undefined ? "invisible" : "visible"}`}>
-          <CategoryNavigation />
-        </div>
+      <div className="flex py-8 md:pl-[60px] pt-8">
+        <h2 className="md:pl-[60px] uppercase font-openSans font-bold">
+          Wpisy
+        </h2>
         <SelectCategory selected={selected} setSelected={setSelected} />
+      </div>
+      <div className={`${categoryC === undefined ? "invisible" : "visible"}`}>
+        <CategoryNavigation />
       </div>
 
       <div className="flex gap-x-6 flex-wrap justify-start bg-white">

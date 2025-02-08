@@ -23,7 +23,7 @@ const PostElement = ({ el }: { el: PostType }) => {
       >
         {el.category}
       </p>
-      <h1 className="font-[900] text-[24px] leading-[30px] font-playfair">
+      <h1 className=" font-[900] text-[24px] leading-[30px] font-playfair">
         {el.title}
       </h1>
       <p className="py-8 font-playfair">{el.date}</p>

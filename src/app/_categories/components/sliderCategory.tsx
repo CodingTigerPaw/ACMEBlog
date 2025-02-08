@@ -20,9 +20,6 @@ const SliderCategory = ({ slides }: SlidesType) => {
   return (
     <div className="relative w-full max-w-md mx-auto">
       <SlidesDisplay slides={slides} currentIndex={currentIndex} />
-      {/* <div className="overflow-hidden w-full flex items-center justify-center p-4">
-        {slides[currentIndex]}
-      </div> */}
       <div className="flex justify-between mt-4">
         <button className="absolute left-2 top-1/2 transform -translate-y-1/2">
           <Image
